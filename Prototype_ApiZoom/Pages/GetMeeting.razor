@@ -1,0 +1,17 @@
+﻿@using System;
+@using Microsoft.IdentityModel.Tokens;
+@using Newtonsoft.Json.Linq;
+@using RestSharp;
+@using System.Net;
+@using System.Text;
+
+@page "/GetMeeting"
+<div class="form-control">
+    <h1>Get Meeting</h1>
+    <h2>JSON Response</h2>
+    <label>@JSONResponse</label>
+    <br />
+    <button @onclick="GetExistingMeeting">
+        Get Meeting
+    </button>
+</div>

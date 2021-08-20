@@ -1,0 +1,26 @@
+﻿@using System;
+@using Microsoft.IdentityModel.Tokens;
+@using Newtonsoft.Json.Linq;
+@using RestSharp;
+@using System.Net;
+@using System.Text;
+
+@page "/CreateMeeting"
+<h1>Create Meeting</h1>
+<div>
+    <h2>Host URL</h2>
+    <label>@Host</label>
+
+    <h2>Join URL</h2>
+    <label>@Join</label>
+
+    <h2>Response Code</h2>
+    <label>@Code</label>
+    <h2>JSON Response</h2>
+    <label>@JSONResponse</label>
+
+    <br />
+    <button @onclick="CreateNewMeeting">
+        Create Meeting
+    </button>
+</div>
