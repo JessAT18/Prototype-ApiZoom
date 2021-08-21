@@ -14,7 +14,7 @@ namespace Prototype_ApiZoom.Pages
 {
     public partial class CreateMeeting
     {
-        public string APISecret { get; set; } = "n44TnucAkdyzORP9Y1xa8EvKoWiZHlLLLeJb";
+        public string APISecret { get; set; } = "ERNhIO5sZOnrL1lh4C2LjLZ9O4xWu8tuN9bL";
         public string APIKey { get; set; } = "1tTFpf0JQjCpjWlqdVmQZw";
         public string ClientURL { get; set; } = "https://api.zoom.us/v2/users/jessica.aquino.torrez@gmail.com/meetings";
 
@@ -52,12 +52,12 @@ namespace Prototype_ApiZoom.Pages
             //Charging data to our model
             meetingRequest = new CreateMeetingRequestModel
             {
-                topic = "Meeting with Jessica",
-                type = 2,
-                start_time = "2021-08-21T12:15:00Z",
+                topic = "Meeting with Jessica 3",
+                type = 2, //1 Instant, 2 Scheduled, 3 Recurring with no fixed time, 4 Recurring with fixed time
+                start_time = "2021-08-21T17:15:00", //Z doesn't let to select a timezone. Bolivian timezone is America/Santiago
                 duration = 40, //In minutes
-                //schedule_for = "a2018114476@estudiantes.upsa.edu.bo",
-                timezone = "America/La_Paz",
+                schedule_for = "jessica.aquino.torrez@gmail.com", //A zoom account can have other users...
+                timezone = "America/Santiago",
                 password = "MyPassw0rd",
                 agenda = "Agenda del meeting customizable", //2000 characters
                 recurrence = {
@@ -67,8 +67,8 @@ namespace Prototype_ApiZoom.Pages
                     monthly_day = 21, //type = 3, 1-31
                     //monthly_week = -1, //type = 3, -1 - 4
                     //monthly_week_day = -1, //type = 3, monthly_week used, 1-7
-                    end_times = -1,
-                    end_date_time = "2021-09-21T12:15:00Z"
+                    end_times = 2,
+                    end_date_time = "2021-10-21T17:15:00Z"
                 },
                 settings =
                 {
@@ -86,7 +86,7 @@ namespace Prototype_ApiZoom.Pages
                     auto_recording = "none", //local, cloud, none
                     enforce_login = false,
                     enforce_login_domains = "a",
-                    //alternative_hosts = "jessat18@outlook.com", //email addresses or IDs
+                    //alternative_hosts = "5592917843", //email addresses or IDs
                     /*global_dial_in_countries = new string[2]{
                         "a",
                         "b"
