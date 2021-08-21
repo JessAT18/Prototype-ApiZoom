@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
 using System.Text;
+using Entities.CreateMeeting.Request;
 
 namespace Prototype_ApiZoom.Pages
 {
@@ -19,6 +20,12 @@ namespace Prototype_ApiZoom.Pages
 
         private string Host, Join, Code;
         public string JSONResponse { get; set; }
+
+        public CreateMeetingRequestModel meetingRequest { get; set; }
+
+        protected override void OnInitialized()
+        {
+        }
 
         private void CreateNewMeeting()
         {
@@ -41,7 +48,56 @@ namespace Prototype_ApiZoom.Pages
             var client = new RestClient(ClientURL);
             var request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
-            request.AddJsonBody(new { topic = "Meeting with Ussain", duration = "10", start_time = "2021-03-20T05:00:00", type = "2" });
+
+            //Charging data to our model
+            meetingRequest = new CreateMeetingRequestModel
+            {
+                topic = "Meeting with Jessica",
+                type = 2,
+                start_time = "2021-08-21T12:15:00Z",
+                duration = 40, //In minutes
+                //schedule_for = "a2018114476@estudiantes.upsa.edu.bo",
+                timezone = "America/La_Paz",
+                password = "MyPassw0rd",
+                agenda = "Agenda del meeting customizable", //2000 characters
+                recurrence = {
+                    type = 3, //1 Daily, 2 Weekly, 3 Monthly
+                    repeat_interval = 2, //Every two monts
+                    //weekly_days = "a", type = 2 1-7
+                    monthly_day = 21, //type = 3, 1-31
+                    //monthly_week = -1, //type = 3, -1 - 4
+                    //monthly_week_day = -1, //type = 3, monthly_week used, 1-7
+                    end_times = -1,
+                    end_date_time = "2021-09-21T12:15:00Z"
+                },
+                settings =
+                {
+                    host_video = false,
+                    participant_video = false,
+                    cn_meeting = false,
+                    in_meeting = false,
+                    join_before_host = false,
+                    mute_upon_entry = true,
+                    watermark = false,
+                    use_pmi = false,
+                    approval_type = 2, //0-2
+                    registration_type = 3, //1-3
+                    audio = "both", //both, telephony, voip
+                    auto_recording = "none", //local, cloud, none
+                    enforce_login = false,
+                    enforce_login_domains = "a",
+                    //alternative_hosts = "jessat18@outlook.com", //email addresses or IDs
+                    /*global_dial_in_countries = new string[2]{
+                        "a",
+                        "b"
+                    },*/
+                    registrants_email_notification = true
+                }
+            };
+
+            request.AddJsonBody(meetingRequest);
+
+            //request.AddJsonBody(new { topic = "Meeting with me", duration = "10", start_time = "2021-03-20T05:00:00", type = "2" });
             request.AddHeader("authorization", String.Format("Bearer {0}", tokenString));
 
             IRestResponse restResponse = client.Execute(request);
