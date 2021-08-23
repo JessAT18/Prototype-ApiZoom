@@ -1,11 +1,4 @@
-﻿@using System;
-@using Microsoft.IdentityModel.Tokens;
-@using Newtonsoft.Json.Linq;
-@using RestSharp;
-@using System.Net;
-@using System.Text;
-
-@page "/GetMeeting"
+﻿@page "/GetMeeting"
 <div class="form-control">
     <h1>Get Meeting</h1>
     <h2>JSON Response</h2>
@@ -16,7 +9,7 @@
         Get All Meetings
     </button>
     <p>Status: @numericStatusCode2</p>
-    <button @onclick="GetAMeeting">
+    <button @onclick="(e => GetAMeeting(74053869211))">
         Get One Meeting
     </button>
 </div>

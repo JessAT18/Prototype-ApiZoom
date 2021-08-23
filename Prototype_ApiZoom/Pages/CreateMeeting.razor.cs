@@ -39,7 +39,7 @@ namespace Prototype_ApiZoom.Pages
             {
                 Issuer = authenticationInfo.APIKey,
                 Expires = now.AddSeconds(300),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256), //No es compatible con Blazor 5.0
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256),
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             authenticationInfo.tokenString = tokenHandler.WriteToken(token);

@@ -1,0 +1,12 @@
+﻿@page "/DeleteMeeting"
+<h3>Delete Meeting</h3>
+<div class="form-control">
+    <h1>Delete Meeting</h1>
+    <h2>JSON Response</h2>
+    <label>@JSONResponse</label>
+    <br />
+    <p>Status: @numericStatusCode1</p>
+    <button @onclick="(e => DeleteAMeeting())">
+        Delete A Meeting
+    </button>
+</div>

@@ -1,7 +1,5 @@
 ﻿using Entities.CreateMeeting.Authentication;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -12,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Prototype_ApiZoom.Pages
 {
-    public partial class GetMeeting
+    public partial class DeleteMeeting
     {
         public AuthenticationModel authenticationInfo = new AuthenticationModel
         {
@@ -20,10 +18,8 @@ namespace Prototype_ApiZoom.Pages
             APISecret = "ERNhIO5sZOnrL1lh4C2LjLZ9O4xWu8tuN9bL",
             userId = "jessica.aquino.torrez@gmail.com"
         };
-        public string ClientURL { get; set; } = "https://api.zoom.us/v2/users/jessica.aquino.torrez@gmail.com/meetings";
         public string JSONResponse { get; set; }
         public int numericStatusCode1 { get; set; }
-        public int numericStatusCode2 { get; set; }
 
         private void Authentication()
         {
@@ -41,33 +37,13 @@ namespace Prototype_ApiZoom.Pages
             var token = tokenHandler.CreateToken(tokenDescriptor);
             authenticationInfo.tokenString = tokenHandler.WriteToken(token);
         }
-        private void GetAllMeetings()
-        {
-            Authentication();
-            //Create the request
-            var client = new RestClient(ClientURL);
-            var request = new RestRequest(Method.GET);
-            request.RequestFormat = DataFormat.Json;
-            request.AddParameter("userId", authenticationInfo.userId);
-
-            //request.AddJsonBody(new { userId = "jessica.aquino.torrez@gmail.com" });
-            request.AddHeader("authorization", String.Format("Bearer {0}", authenticationInfo.tokenString));
-
-            IRestResponse restResponse = client.Execute(request);
-            HttpStatusCode statusCode = restResponse.StatusCode;
-            numericStatusCode1 = (int)statusCode;
-            //var jObject = JObject.Parse(restResponse.Content); 
-            JSONResponse = restResponse.Content;
-            //JSONResponse = (string)jObject.ToString(Formatting.Indented);
-            //JSONResponse = jObject.ToString(Formatting.Indented);
-        }
-        private void GetAMeeting(ulong meetingId = 74053869211)
+        private void DeleteAMeeting(ulong meetingId = 77975286805)
         {
             Authentication();
 
             //Create the request
             var client = new RestClient("https://api.zoom.us/v2/meetings/{meetingId}");
-            var request = new RestRequest(Method.GET);
+            var request = new RestRequest(Method.DELETE);
 
             request.AddUrlSegment("meetingId", meetingId);
             request.RequestFormat = DataFormat.Json;
@@ -75,7 +51,7 @@ namespace Prototype_ApiZoom.Pages
 
             IRestResponse restResponse = client.Execute(request);
             HttpStatusCode statusCode = restResponse.StatusCode;
-            numericStatusCode2 = (int)statusCode;
+            numericStatusCode1 = (int)statusCode;
             //var jObject = JObject.Parse(restResponse.Content); 
             JSONResponse = restResponse.Content;
             //JSONResponse = (string)jObject.ToString(Formatting.Indented);
