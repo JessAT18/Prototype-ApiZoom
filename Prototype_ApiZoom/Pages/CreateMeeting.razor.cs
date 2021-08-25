@@ -9,19 +9,19 @@ using RestSharp;
 using System.Net;
 using System.Text;
 using Entities.CreateMeeting.Request;
-using Entities.CreateMeeting.Authentication;
+using Entities.Authentication;
 
 namespace Prototype_ApiZoom.Pages
 {
     public partial class CreateMeeting
     {
-        public AuthenticationModel authenticationInfo = new AuthenticationModel
+        public static AuthenticationModel authenticationInfo = new AuthenticationModel
         {
-            APIKey = "1tTFpf0JQjCpjWlqdVmQZw",
-            APISecret = "ERNhIO5sZOnrL1lh4C2LjLZ9O4xWu8tuN9bL",
-            userId = "jessica.aquino.torrez@gmail.com"
+            APIKey = "YWOqpImNTEybugrfqSJK1w",
+            APISecret = "sxdMvePBljYusrryQQxts6EE1qrdXSdzlDSa",
+            userId = "pruebazoomapi@gmail.com"
         };
-        public string ClientURL { get; set; } = "https://api.zoom.us/v2/users/jessica.aquino.torrez@gmail.com/meetings";
+        public string ClientURL { get; set; } = "https://api.zoom.us/v2/users/" + authenticationInfo.userId + "/meetings";
 
         private string Host, Join, Code;
         public string JSONResponse { get; set; }
@@ -57,12 +57,12 @@ namespace Prototype_ApiZoom.Pages
             //Charging data to our model
             meetingRequest = new CreateMeetingRequestModel
             {
-                topic = "Meeting with Jessica 3",
+                topic = "Meeting de prueba",
                 type = 2, //1 Instant, 2 Scheduled, 3 Recurring with no fixed time, 4 Recurring with fixed time
-                start_time = "2021-08-21T17:15:00", //Z doesn't let to select a timezone. Bolivian timezone is America/Santiago
+                start_time = "2021-08-21T21:15:00", //Z doesn't let to select a timezone. Bolivian timezone is America/Santiago
                 duration = 40, //In minutes
-                schedule_for = "jessica.aquino.torrez@gmail.com", //A zoom account can have other users...
-                timezone = "America/Santiago",
+                schedule_for = "pruebazoomapi@gmail.com", //A zoom account can have other users...
+                timezone = "America/La_Paz",
                 password = "MyPassw0rd",
                 agenda = "Agenda del meeting customizable", //2000 characters
                 recurrence = {
@@ -73,7 +73,7 @@ namespace Prototype_ApiZoom.Pages
                     //monthly_week = -1, //type = 3, -1 - 4
                     //monthly_week_day = -1, //type = 3, monthly_week used, 1-7
                     end_times = 2,
-                    end_date_time = "2021-10-21T17:15:00Z"
+                    end_date_time = "2021-10-25T20:30:00"
                 },
                 settings =
                 {

@@ -1,4 +1,4 @@
-﻿using Entities.CreateMeeting.Authentication;
+﻿using Entities.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,13 +14,13 @@ namespace Prototype_ApiZoom.Pages
 {
     public partial class GetMeeting
     {
-        public AuthenticationModel authenticationInfo = new AuthenticationModel
+        public static AuthenticationModel authenticationInfo = new AuthenticationModel
         {
-            APIKey = "1tTFpf0JQjCpjWlqdVmQZw",
-            APISecret = "ERNhIO5sZOnrL1lh4C2LjLZ9O4xWu8tuN9bL",
-            userId = "jessica.aquino.torrez@gmail.com"
+            APIKey = "YWOqpImNTEybugrfqSJK1w",
+            APISecret = "sxdMvePBljYusrryQQxts6EE1qrdXSdzlDSa",
+            userId = "pruebazoomapi@gmail.com"
         };
-        public string ClientURL { get; set; } = "https://api.zoom.us/v2/users/jessica.aquino.torrez@gmail.com/meetings";
+        public string ClientURL { get; set; } = "https://api.zoom.us/v2/users/" + authenticationInfo.userId + "/meetings";
         public string JSONResponse { get; set; }
         public int numericStatusCode1 { get; set; }
         public int numericStatusCode2 { get; set; }
@@ -61,7 +61,7 @@ namespace Prototype_ApiZoom.Pages
             //JSONResponse = (string)jObject.ToString(Formatting.Indented);
             //JSONResponse = jObject.ToString(Formatting.Indented);
         }
-        private void GetAMeeting(ulong meetingId = 74053869211)
+        private void GetAMeeting(ulong meetingId = 77429197863)
         {
             Authentication();
 

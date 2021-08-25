@@ -1,4 +1,4 @@
-﻿using Entities.CreateMeeting.Authentication;
+﻿using Entities.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using RestSharp;
 using System;
@@ -12,11 +12,11 @@ namespace Prototype_ApiZoom.Pages
 {
     public partial class DeleteMeeting
     {
-        public AuthenticationModel authenticationInfo = new AuthenticationModel
+        public static AuthenticationModel authenticationInfo = new AuthenticationModel
         {
-            APIKey = "1tTFpf0JQjCpjWlqdVmQZw",
-            APISecret = "ERNhIO5sZOnrL1lh4C2LjLZ9O4xWu8tuN9bL",
-            userId = "jessica.aquino.torrez@gmail.com"
+            APIKey = "YWOqpImNTEybugrfqSJK1w",
+            APISecret = "sxdMvePBljYusrryQQxts6EE1qrdXSdzlDSa",
+            userId = "pruebazoomapi@gmail.com"
         };
         public string JSONResponse { get; set; }
         public int numericStatusCode1 { get; set; }
@@ -37,7 +37,7 @@ namespace Prototype_ApiZoom.Pages
             var token = tokenHandler.CreateToken(tokenDescriptor);
             authenticationInfo.tokenString = tokenHandler.WriteToken(token);
         }
-        private void DeleteAMeeting(ulong meetingId = 77975286805)
+        private void DeleteAMeeting(ulong meetingId = 86483226925)
         {
             Authentication();
 

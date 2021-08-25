@@ -1,3 +1,13 @@
 ﻿@page "/UpdateMeeting"
 
-<h3>UpdateMeeting</h3>
+<h3>Update Meeting</h3>
+<div class="form-control">
+    <h1>Delete Meeting</h1>
+    <h2>JSON Response</h2>
+    <label>@JSONResponse</label>
+    <br />
+    <p>Status: @numericStatusCode1</p>
+    <button @onclick="(e => UpdateAMeeting())">
+        Update Meeting
+    </button>
+</div>

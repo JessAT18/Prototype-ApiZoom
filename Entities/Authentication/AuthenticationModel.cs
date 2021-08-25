@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.CreateMeeting.Authentication
+namespace Entities.Authentication
 {
     public class AuthenticationModel
     {
